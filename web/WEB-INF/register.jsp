@@ -16,7 +16,7 @@
         <h1>Shopping List</h1>
         <label>Username: </label>
         <input type="text" name="c_username">
-        <input type="submit"  value="Register name">
+        <input type="submit" name="Register">
         <input type='hidden' name='action' value='register'>
         </form>
     </body>

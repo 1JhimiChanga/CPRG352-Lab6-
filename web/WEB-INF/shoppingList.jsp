@@ -15,15 +15,16 @@
     
     <body>
         <h1>Shopping List</h1>
-        <form method='post' action=''>
-            <label>Hello, ${name}</label>
-            <a href="<c:url value='/ShoppingList?action=logout' />">Logout</a>
-           
-            
-            
-        </form>
         
-            <form method="post" action="">
+        <form method="post" action="ShoppingList">
+            <label>Hello, ${name}</label>
+            <a href="ShoppingList?action=logout">Logout</a>
+           
+         </form>   
+            
+        
+        
+         <form method="post" action="ShoppingList">
             <h3>List</h3>
             <label>Add item: </label>
             <input type="text" name='c_item'>
@@ -31,7 +32,7 @@
             <input type="submit" value="Add">
         </form>    
             
-        <form method="post" action="">
+        <form method="post" action="ShoppingList">
             <c:forEach items="${itemList}" var="item">
                 
                 <input type="radio" name="v_item" value="${item}" >

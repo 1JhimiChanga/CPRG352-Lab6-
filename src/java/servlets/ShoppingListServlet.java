@@ -43,9 +43,9 @@ public class ShoppingListServlet extends HttpServlet {
        
           //Logout
         String action = request.getParameter("action");
-        if(action.equals("logout")){
-            System.out.println("LOG OUT HAPPENED");
+        if(action.equals("logout")){            
             session.invalidate();
+            System.out.println("LOG OUT HAPPENED");
             response.sendRedirect("ShoppingList");
             return;
             
@@ -86,28 +86,35 @@ public class ShoppingListServlet extends HttpServlet {
        if (action.equals("register")){
              //Store the userrname
             String username = request.getParameter("c_username");
+
+            if(username != null && !username.equals("")){
             session.setAttribute("username", username);
-            request.setAttribute("name", username);
             System.out.println("Register HAPPENDED");
-            getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
+            response.sendRedirect("ShoppingList");
+            } else {
+                response.sendRedirect("ShoppingList");
+            }
         } else if (action.equals("add")){
            //add the item and save it to session
-            itemList.add(itemInput);
-            session.setAttribute("existList", itemList);
-            session.setAttribute("itemList", itemList);
-            System.out.println(itemList);
-            response.sendRedirect("ShoppingList");
+           if(itemInput != null && !itemInput.equals("")){
+                itemList.add(itemInput);
+                session.setAttribute("existList", itemList);
+                session.setAttribute("itemList", itemList);
+                System.out.println(itemList);
+                response.sendRedirect("ShoppingList");
+           } else {
+               response.sendRedirect("ShoppingList");
+           }
+            
         } else if(action.equals("delete")){
-            
-            
+            //remove the 
             itemList.remove(deleteItem);
-            
-            
+            //set the list
             session.setAttribute("existList", itemList);
             session.setAttribute("itemList", itemList);
             System.out.println(itemList);
             response.sendRedirect("ShoppingList");
-        }
+        } 
         
         
         
