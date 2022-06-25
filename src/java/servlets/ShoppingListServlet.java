@@ -27,11 +27,7 @@ public class ShoppingListServlet extends HttpServlet {
         //Grab existing User
         HttpSession session = request.getSession();
         String existUser = (String) session.getAttribute("username");
-        
-        
-       
-        
-        
+            
         //Check if user actually exist
         if(existUser != null){
             request.setAttribute("name", existUser);
@@ -45,7 +41,6 @@ public class ShoppingListServlet extends HttpServlet {
         String action = request.getParameter("action");
         if(action.equals("logout")){            
             session.invalidate();
-            System.out.println("LOG OUT HAPPENED");
             response.sendRedirect("ShoppingList");
             return;
             
@@ -86,11 +81,9 @@ public class ShoppingListServlet extends HttpServlet {
        if (action.equals("register")){
              //Store the userrname
             String username = request.getParameter("c_username");
-
             if(username != null && !username.equals("")){
-            session.setAttribute("username", username);
-            System.out.println("Register HAPPENDED");
-            response.sendRedirect("ShoppingList");
+                session.setAttribute("username", username);
+                response.sendRedirect("ShoppingList");
             } else {
                 response.sendRedirect("ShoppingList");
             }
@@ -100,7 +93,6 @@ public class ShoppingListServlet extends HttpServlet {
                 itemList.add(itemInput);
                 session.setAttribute("existList", itemList);
                 session.setAttribute("itemList", itemList);
-                System.out.println(itemList);
                 response.sendRedirect("ShoppingList");
            } else {
                response.sendRedirect("ShoppingList");
@@ -112,7 +104,6 @@ public class ShoppingListServlet extends HttpServlet {
             //set the list
             session.setAttribute("existList", itemList);
             session.setAttribute("itemList", itemList);
-            System.out.println(itemList);
             response.sendRedirect("ShoppingList");
         } 
         
